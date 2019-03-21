@@ -1,0 +1,24 @@
+<script type='text/javascript'>
+    $(function() {
+        Dashing.widget_base_dimensions = [350, 350]
+        Dashing.numColumns = 4
+    });
+</script>
+
+<% content_for(:title) {"Overview"} %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="circle-ci-ministryofjustice-digital-hub-master" data-view="CircleCi" data-title="Circle build"></div>
+    </li>
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="hub-staging" data-view="ServerStatusSquares" data-title="Staging"></div>
+    </li>
+    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="hub-berwyn" data-view="ServerStatusSquares" data-title="Berwyn"></div>
+    </li>
+    <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="hub-wayland" data-view="ServerStatusSquares" data-title="Wayland"></div>
+    </li>
+  </ul>
+</div>
