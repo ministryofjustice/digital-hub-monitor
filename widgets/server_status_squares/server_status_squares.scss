@@ -1,9 +1,8 @@
 // ----------------------------------------------------------------------------
 // Widget Styles
 // ----------------------------------------------------------------------------
-$value-color:       #fff;
-$label-color:       rgba(255, 255, 255, 0.7);
-
+$value-color: #fff;
+$label-color: rgba(255, 255, 255, 0.7);
 
 .widget-server-status-squares {
   background-color: #12b0c5;
@@ -12,6 +11,10 @@ $label-color:       rgba(255, 255, 255, 0.7);
   .title {
     color: rgba(255, 255, 255, 0.7);
     font-size: 25px;
+  }
+
+  .build-error {
+    text-decoration: underline;
   }
 
   .updated-at {

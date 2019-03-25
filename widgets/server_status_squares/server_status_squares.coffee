@@ -8,7 +8,7 @@ class Dashing.ServerStatusSquares extends Dashing.Widget
     result = data && data.result
     color = ""
 
-    if result && result.status == "OK"
+    if result && result.status == "UP"
       color = green
     else if result && result.status == "PARTIALLY_DEGRADED"
       color = purple
