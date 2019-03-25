@@ -12,8 +12,9 @@ require 'ap'
 #
 httptimeout = 60
 ping_count = 10
+
 proxy = URI(ENV["QUOTAGUARDSTATIC_URL"])
-options = {
+$options = {
   http_proxyaddr: proxy.host,
   http_proxyport: proxy.port,
   http_proxyuser: proxy.user,
@@ -61,13 +62,14 @@ servers = [
 def gather_health_data(server)
     puts "requesting #{server[:url]}..."
     begin
-      server_response = HTTParty.get(server[:url], options)
-      return JSON.parse(server_response.body)
+      server_response = HTTParty.get(server[:url], $options)
+      ap server_response.inspect
+      return JSON.parse(server_response.parsed_response)
     rescue HTTParty::Error => expectation
-      ap expectation.class
+      ap expectation.inspect
       return { status: 'error', error: expectation.class, buildNumber: 'N/A', dependencies: { hub: "NA", matomo: "N/A" } }
     rescue StandardError => expectation
-      ap expectation.class
+      ap expectation.inspect
       return { status: 'error', error: expectation.class, buildNumber: 'N/A', dependencies: { hub: "NA", matomo: "N/A" } }
     end
 end
