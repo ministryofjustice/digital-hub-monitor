@@ -13,16 +13,6 @@ require 'ap'
 httptimeout = 60
 ping_count = 10
 
-proxy = URI(ENV["QUOTAGUARDSTATIC_URL"])
-$options = {
-  http_proxyaddr: proxy.host,
-  http_proxyport: proxy.port,
-  http_proxyuser: proxy.user,
-  http_proxypass: proxy.password,
-  headers: { 'Accept' => 'application/json' },
-  timeout: 5
-}
-
 #
 # Check whether a server is Responding you can set a server to
 # check via http request or ping
@@ -62,9 +52,8 @@ servers = [
 def gather_health_data(server)
     puts "requesting #{server[:url]}..."
     begin
-      server_response = HTTParty.get(server[:url], $options)
-      ap server_response.inspect
-      return JSON.parse(server_response.parsed_response)
+      server_response = HTTParty.get(server[:url], headers: { 'Accept' => 'application/json' }, timeout: 5)
+      return JSON.parse(server_response.body)
     rescue HTTParty::Error => expectation
       ap expectation.inspect
       return { status: 'error', error: expectation.class, buildNumber: 'N/A', dependencies: { hub: "NA", matomo: "N/A" } }
