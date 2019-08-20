@@ -1,8 +1,19 @@
 # The Digital Hub Monitoring
 
-Monitoring for the digital hub projects.
+This application is used to setup and monitor the digital hub healthcheck dashboard.
 
-The project is based on Smashing.
+The project is based on Smashing framework.
+
+
+
+## Setup
+
+Download the digital-hub-monitor repository and ensure you are in the correct top level file path before you proceed.
+
+```
+~/digital-hub-monitor
+```
+
 
 ## Build
 
@@ -11,10 +22,18 @@ gem install bundler
 bundle install
 ```
 
+Ensure ruby dev and smashing is installed
+
+```
+apt-get install ruby-dev
+gem install smashing
+```
+
+
 ## Run
 
 ```
-smashing start
+CIRCLE_CI_TOKEN="ENTER VALID API TOKEN" smashing start
 ```
 
 ## Local
