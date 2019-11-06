@@ -33,18 +33,18 @@ ping_count = 10
 servers = [
     {
       name: 'hub-staging',
-      url: 'https://digital-hub-stage.hmpps.dsd.io/health',
+      url: 'https://pfs-stage-hub-1.uksouth.cloudapp.azure.com/health',
       method: 'https'
     },
     {
       name: 'hub-berwyn',
-      url: 'http://bli.prod.admin.hub.service.hmpps.dsd.io/health',
-      method: 'http'
+      url: 'https://digital-hub.bwi.dpn.gov.uk/health',
+      method: 'https'
     },
     {
       name: 'hub-wayland',
-      url: 'http://wli.prod.admin.hub.service.hmpps.dsd.io/health',
-      method: 'http'
+      url: 'https://digital-hub.wli.dpn.gov.uk/health',
+      method: 'https'
     },
 ]
 
@@ -52,7 +52,7 @@ servers = [
 def gather_health_data(server)
     puts "requesting #{server[:url]}..."
     begin
-      server_response = HTTParty.get(server[:url], headers: { 'Accept' => 'application/json' }, timeout: 5)
+      server_response = HTTParty.get(server[:url], headers: { 'Accept' => 'application/json' }, timeout: 5, :verify => false)
       return JSON.parse(server_response.body)
     rescue HTTParty::Error => expectation
       ap expectation.inspect
